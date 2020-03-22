@@ -1,0 +1,59 @@
+<?php
+
+// https://mlocati.github.io/php-cs-fixer-configurator/#version:2.16
+
+return PhpCsFixer\Config::create()
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->exclude('vendor')
+            ->in(__DIR__)
+    )
+    ->setRules([
+        '@Symfony' => true,
+        'align_multiline_comment' => true,
+        'array_indentation' => true,
+        'blank_line_before_statement' => false,
+        'compact_nullable_typehint' => true,
+        'concat_space' => [
+            'spacing' => 'one'
+        ],
+        'date_time_immutable' => true,
+        'declare_strict_types' => true,
+        'final_class' => true,
+        'fully_qualified_strict_types' => true,
+        'function_declaration' => [
+            'closure_function_spacing' => 'one'
+        ],
+        'global_namespace_import' => [
+            'import_classes' => true,
+            'import_constants' => true,
+            'import_functions' => true,
+        ],
+        'linebreak_after_opening_tag' => true,
+        'method_chaining_indentation' => true,
+        'multiline_whitespace_before_semicolons' => [
+            'strategy' => 'no_multi_line',
+        ],
+        'new_with_braces' => false,
+        'no_useless_else' => true,
+        'no_useless_return' => true,
+        'nullable_type_declaration_for_default_null_value' => true,
+        'ordered_class_elements' => true,
+        'phpdoc_to_comment' => false,
+        'phpdoc_separation' => false,
+        'psr0' => true,
+        'psr4' => true,
+        'return_assignment' => true,
+        'self_accessor' => true,
+        'self_static_accessor' => true,
+        'simplified_null_return' => true,
+        'single_line_comment_style' => [
+            'comment_types' => ['asterisk'],
+        ],
+        'single_line_throw' => false,
+        'strict_comparison' => true,
+        'strict_param' => true,
+        'yoda_style' => null,
+    ])
+    ->setLineEnding("\n")
+    ->setRiskyAllowed(true);

@@ -1,0 +1,41 @@
+parameters:
+    stop_on_failure: true
+    ignore_unstaged_changes: true
+    tasks:
+        composer:
+            strict: true
+        composer_script:
+            script: spec
+        git_branch_name:
+            whitelist:
+                - "/(feature|fix|hotfix)\\/[a-z0-9-]+/"
+        jsonlint:
+            detect_key_conflicts: true
+        phpcpd:
+            directory:
+                - src
+        phpcsfixer2:
+            config: .php_cs.dist
+        phpmd:
+           ruleset:
+               - codesize
+               - cleancode
+               - controversial
+               - design
+               - naming
+               - unusedcode
+           exclude:
+               - RoboFile.php
+               - spec
+        phpmnd:
+            exclude:
+                - RoboFile.php
+                - spec
+        securitychecker: null
+        # Could have used psalm task instead but it runs by sending the whole
+        # root directory to the executable. It's annoying and I want a clean
+        # and understandable psalm.xml file. So here we are.
+        shell:
+            scripts:
+                - ["-c", "./vendor/bin/psalm --threads=4"]
+        yamllint: null
