@@ -56,13 +56,16 @@ throws_not(fn() => $legal_age(5));
 throws_not(fn() => $legal_age(20));
 
 // Like throws(), we can specify some exception classes to not catch.
-// Here, $legal_age(5) still throws an exception, but we're just
-// verifying that it does not throw an InvalidArgumentException.
+// Here, $legal_age(5) still throws an exception and since we're just
+// verifying that it does not throw an InvalidArgumentException, so
+// throws_not() does not throw a ShouldHaveNotThrownException.
 throws_not(fn() => $legal_age(5), InvalidArgumentException::class);
 
 // Now, it throws a ShouldHaveNotThrownException.
 throws_not(fn() => $legal_age(5), UnderLegalAgeException::class);
 ```
+
+**Please note, and it's very important, that `throws_not()` can lead to false positives. When you're trying to catch a specific exception, if another exception occurs it will be shut. Then, be sure to know what you're doing when using specific exceptions catching with `throws_not()`!**
 
 ## License
 
