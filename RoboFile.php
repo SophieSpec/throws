@@ -11,7 +11,7 @@ final class RoboFile extends Robo\Tasks
     public function publish(string $version): void
     {
         $new = new SemVer\Version($version);
-        $current = new SemVer\Version(`git describe --abbrev=0 --tags`);
+        $current = new SemVer\Version(`git describe --abbrev=0 --tags` ?? '0.0.0');
         if ($new->gt($current) === false) {
             throw new Exception(
                 "Invalid semver: '$new' should be greater than '$current'"
