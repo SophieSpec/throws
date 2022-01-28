@@ -33,9 +33,10 @@ final class SpecificExceptionNet implements ExceptionNetInterface
             }
             $types = implode(', ', $this->types);
             $classname = get_class($e);
+            $message = $e->getMessage();
             throw new ShouldHaveNotThrownException(<<<MESSAGE
                 Should have thrown one of [$types] exceptions,
-                '$classname' caught
+                '$classname' caught with message '$message'
                 MESSAGE,
                 0,
                 $e
