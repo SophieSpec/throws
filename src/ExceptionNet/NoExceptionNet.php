@@ -23,8 +23,9 @@ final class NoExceptionNet implements ExceptionNetInterface
             $this->runnable->run();
         } catch (Throwable $e) {
             $classname = get_class($e);
+            $message = $e->getMessage();
             throw new ShouldHaveNotThrownException(
-                "'$classname' exception has been thrown",
+                "'$classname' exception has been thrown with message '$message'",
                 0,
                 $e
             );
